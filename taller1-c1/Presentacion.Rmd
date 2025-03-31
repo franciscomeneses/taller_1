@@ -165,6 +165,11 @@ ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
 
 ]
 
+
+
+--
+
+
 .pull-right[
 ¿Qué conclusión inferimos del grafico?
 
@@ -216,6 +221,10 @@ ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
 ```
 
 ]
+
+
+--
+
 
 .pull-right[
 
