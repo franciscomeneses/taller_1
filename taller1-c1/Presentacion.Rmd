@@ -1,0 +1,380 @@
+---
+title: "Postulación eCh"
+subtitle: " "
+author: ""
+date: " "
+output:
+  xaringan::moon_reader:
+    css: ["xaringan_custom/xaringan-themer.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "xaringan_custom/macros.js"
+    number_sections: true
+    seal: false # esto omite title slide automática
+---
+class: inverse, bottom, right
+
+```{r, include=FALSE,echo=FALSE,results='hide'}
+#install.packages("pagedown")
+#pagedown::chrome_print("Presentacion.html",output="Presentacion.pdf")
+```
+
+
+```{r setup, include=FALSE, cache = FALSE}
+
+library(dplyr)
+require("knitr")
+options(htmltools.dir.version = FALSE)
+pacman::p_load(RefManageR)
+```
+
+```{r eval=FALSE, echo=FALSE}
+# Correr esta linea para ejecutar
+rmarkdown::render('xaringan::moon_reader')
+```
+
+<!---
+About macros.js: permite escalar las imágenes como [:scale 50%](path to image), hay si que grabar ese archivo js en el directorio.
+.pull-left[<images/Conocimiento cívico.png>] 
+.pull-right[<images/Conocimiento cívico_graf.png>]
+
+--->
+
+# __Primer Taller Participativo__
+## * aproximándonos a los intervalos de confianza *
+<br>
+<hr>
+# Investigación Cuantitativa I
+
+### Docentes: Patricio Rodríguez; LLery Ponce 
+### Ayudante: Francisco Meneses
+
+<br>
+
+---
+
+# Contenido
+
++ Intervalos de confianza
+  - Repaso intervalos de confianza
+  - Revisión participativa Ticket de salida.
+  - Ejercicios conjuntos
+  - ¿Cálculo? 
+  
++ T student 
+  - Repaso
+  - revisión ticket de salida
+  - ejercicios
+  
+  
++ Conceptos relevantes
+  - Tipos de variables 
+  - Teoría del límite central
+---
+class: inverse, middle, center, slideInRight
+
+#  Hablemos de intervalos de confianza
+---
+
+
+## Los intervalos de confianza: 
+
+Representan la incertidumbre de una inferencia muestral
+
+- valor observado (en la muestra):  **51%**
+- Intervalo de confianza (en la población con 95% de confianza):  **48% - 54%**
+- Distinto a desviación estándar.
+
+--
+
+## Ejemplo de investigación
+
+ > *¿Dar alimento a los estudiantes en la escuela mejora la asistencia?*
+ 
+ 
+ 
+--
+
+.center[![:scale 80%](images/relacion.png)]
+
+---
+### Metodología
+
+
+* Hicimos un experimento con tres grupos de estudiantes elegidos al azar (n = 600).
+
+Los grupos son:
+* sin alimento escolar (N=200)
+
+* desayuno escolar (N=200)
+
+* desayuno más almuerzo.  (N=200)
+
+
+---
+
+class: inverse, middle, center, slideInRight
+
+#  Veamos los resultados (Ficticios)...
+
+
+## Actividad: Escriban sus conclusiones por cada lamina
+---
+
+# Solo los promedios de la muestra
+
+.center[
+```{r, echo = FALSE}
+# Cargar librerías necesarias
+library(ggplot2)
+
+# Crear datos ficticios
+set.seed(123)
+categorias <- c("Desayuno + Almuerzo", "Desayuno", "Nada")
+medias <- c(75, 50, 25)  # Valores entre 0 y 100
+errores <- c(10, 15, 4)  # Supuestos errores estándar
+
+# Crear un data frame
+datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
+
+# Graficar barras con intervalos de confianza y etiquetas
+ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
+  geom_bar(stat = "identity", color = "black") +
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+
+  
+  #geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error), width = 0.2) +
+  #geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
+  #geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
+  labs(title = "Porcentaje de asistencia según intervención",
+       y = "Porcentaje de asistencia",
+       x = "Grupo") +
+  ylim(0, 80) +  # Ajustar límites del eje Y
+  theme_minimal()
+
+```
+
+]
+
+
+
+
+---
+
+# Promedio de la muestra más intervalos
+
+ Representemos la incertidumbre con intervalos ¿En que cambia la interpretación? 
+
+.center[
+```{r, echo = FALSE}
+# Cargar librerías necesarias
+library(ggplot2)
+
+# Crear datos ficticios
+set.seed(123)
+categorias <- c("Desayuno + Almuerzo", "Desayuno", "Nada")
+medias <- c(75, 50, 25)  # Valores entre 0 y 100
+errores <- c(10, 15, 4)  # Supuestos errores estándar
+
+# Crear un data frame
+datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
+
+# Graficar barras con intervalos de confianza y etiquetas
+ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
+  geom_bar(stat = "identity", color = "black") +
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+
+  
+  geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error), width = 0.2) +
+  #geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
+  #geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
+  labs(title = "Porcentaje de asistencia según intervención",
+       y = "Porcentaje de asistencia",
+       x = "Grupo") +
+  ylim(0, 100) +  # Ajustar límites del eje Y
+  theme_minimal()
+
+```
+
+]
+
+
+---
+
+# Sintesis sobre intervalos de confianza
+
+
++  Representan la incertidumbre de trabajar con una muestra. 
+
++  Tenemos el promedio observado en la muestra
+
++  El promedio real debería estar (con un 95% de confianza) en el intervalo. 
+
++  **No mirar los intervalos de confianza nos puede llevar a errores de interpretación ** 
+
+
+---
+
+
+# Promedio de la muestra más intervalos
+
+> Veamos con valores
+
+
+.pull-left[
+```{r, echo = FALSE}
+# Cargar librerías necesarias
+library(ggplot2)
+
+# Crear datos ficticios
+set.seed(123)
+categorias <- c("Desayuno + Almuerzo", "Desayuno", "Nada")
+medias <- c(75, 50, 25)  # Valores entre 0 y 100
+errores <- c(10, 15, 4)  # Supuestos errores estándar
+
+# Crear un data frame
+datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
+
+# Graficar barras con intervalos de confianza y etiquetas
+ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
+  geom_bar(stat = "identity", color = "black") +
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+
+  
+  geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error), width = 0.2) +
+  geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
+  geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
+  labs(title = "Porcentaje de asistencia según intervención",
+       y = "Porcentaje de asistencia",
+       x = "Grupo") +
+  ylim(0, 100) +  # Ajustar límites del eje Y
+  theme_minimal()
+
+```
+
+]
+
+
+.pull-right[
+
+.small[
+```{r, echo = FALSE,message=FALSE}
+
+library(kableExtra)
+
+# Crear datos ficticios
+set.seed(123)
+categorias <- c("Desayuno + Almuerzo", "Desayuno", "Nada")
+medias <- c(75, 50, 25)  # Valores entre 0 y 100
+errores <- c(10, 15, 4)  # Supuestos errores estándar
+
+# Crear un data frame
+datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
+
+datos %>% mutate(
+  valor_inferior= as.numeric(Media -  Error),
+  valor_superior= as.numeric(Media +  Error),
+) %>% select(-Error) %>% 
+  kbl() %>%
+  kable_classic_2(full_width = F)
+
+
+
+
+```
+]
+]
+
+---
+
+class: inverse, middle, center, slideInRight
+
+#  Revisemos el ticket de salida
+---
+
+
+<embed src="https://forms.gle/enq3uWu6TqGGB8o76" style="width:800px; height: 800px;">
+
+
+---
+
+
+class: inverse, middle, center, slideInRight
+
+#  Hagamos unos ejercicios 
+
+
+---
+
+
+
+```{r, echo = FALSE,message=FALSE,warning=FALSE}
+
+# Cargar librerías necesarias
+library(ggplot2)
+
+# Crear datos ficticios
+set.seed(123)
+categorias <- c("Municipales", "Slep", "Subvencionados")
+medias <- c(230, 250, 280)  # Valores entre 0 y 100
+errores <- c(10, 15, 4)  # Supuestos errores estándar
+
+# Crear un data frame
+datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
+
+# Graficar barras con intervalos de confianza y etiquetas
+ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
+  geom_bar(stat = "identity", color = "black") +
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+
+  
+  geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error),vjust=-0.1, width = 0.2) +
+  geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
+  geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
+  labs(title = "Puntaje simce según dependencia",
+       y = "Puntaje Simce ",
+       x = "Grupo") +
+  #ylim(0, 100) +  # Ajustar límites del eje Y
+  theme_minimal()
+
+
+```
+---
+
+```{r, echo = FALSE,message=FALSE,warning=FALSE}
+
+library(kableExtra)
+
+# Crear datos ficticios
+set.seed(123)
+categorias <- c("Municipales", "Slep", "Subvencionados")
+medias <- c(262, 220, 270)  # Valores entre 0 y 100
+errores <- c(5, 5, 5)  # Supuestos errores estándar
+
+
+# Crear un data frame
+datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
+
+datos %>% mutate(
+  valor_inferior= as.numeric(Media -  Error),
+  valor_superior= as.numeric(Media +  Error),
+) %>% select(-Error) %>% 
+  kbl() %>%
+  kable_classic_2(full_width = F)
+
+
+
+
+```
+
+
+---
+
+class: inverse, middle, center, slideInRight
+
+#  Prueba T 
+
+---
