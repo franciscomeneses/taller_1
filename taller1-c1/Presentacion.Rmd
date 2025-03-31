@@ -1,5 +1,5 @@
 ---
-title: "Postulación eCh"
+title: "Taller 1 Investigación Cuantitativa"
 subtitle: " "
 author: ""
 date: " "
