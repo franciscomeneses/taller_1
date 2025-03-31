@@ -124,9 +124,9 @@ class: inverse, middle, center, slideInRight
 ## Actividad: Escriban sus conclusiones por cada lamina
 ---
 
-# Solo los promedios de la muestra
+## Solo los promedios de la muestra
 
-.center[
+.pull-left[
 ```{r, echo = FALSE}
 # Cargar librerías necesarias
 library(ggplot2)
@@ -143,32 +143,42 @@ datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
 # Graficar barras con intervalos de confianza y etiquetas
 ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
   geom_bar(stat = "identity", color = "black") +
-  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold", size=10) +  # Etiqueta en la media
 
   
   #geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error), width = 0.2) +
   #geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
   #geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
-  labs(title = "Porcentaje de asistencia según intervención",
+  labs(title = "Asistencia según intervención",
        y = "Porcentaje de asistencia",
        x = "Grupo") +
   ylim(0, 80) +  # Ajustar límites del eje Y
-  theme_minimal()
+  theme_minimal() + 
+    theme(title = element_text(size=20),
+          legend.position = "bottom",
+          legend.text = element_text(size=20),
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          ) 
 
 ```
 
 ]
 
+.pull-right[
+¿Qué conclusión inferimos del grafico?
 
+Escribe 2 o 3 conclusiones. 
+
+]
 
 
 ---
 
 # Promedio de la muestra más intervalos
 
- Representemos la incertidumbre con intervalos ¿En que cambia la interpretación? 
 
-.center[
+.pull-left[
 ```{r, echo = FALSE}
 # Cargar librerías necesarias
 library(ggplot2)
@@ -177,7 +187,7 @@ library(ggplot2)
 set.seed(123)
 categorias <- c("Desayuno + Almuerzo", "Desayuno", "Nada")
 medias <- c(75, 50, 25)  # Valores entre 0 y 100
-errores <- c(10, 15, 4)  # Supuestos errores estándar
+errores <- c(10, 20, 4)  # Supuestos errores estándar
 
 # Crear un data frame
 datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
@@ -185,21 +195,41 @@ datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
 # Graficar barras con intervalos de confianza y etiquetas
 ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
   geom_bar(stat = "identity", color = "black") +
-  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold", size=10) +  # Etiqueta en la media
 
   
   geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error), width = 0.2) +
   #geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
   #geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
-  labs(title = "Porcentaje de asistencia según intervención",
+  labs(title = "Asistencia según intervención",
        y = "Porcentaje de asistencia",
        x = "Grupo") +
-  ylim(0, 100) +  # Ajustar límites del eje Y
-  theme_minimal()
+  ylim(0, 90) +  # Ajustar límites del eje Y
+  theme_minimal() + 
+    theme(title = element_text(size=20),
+          legend.position = "bottom",
+          legend.text = element_text(size=20),
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          ) 
 
 ```
 
 ]
+
+.pull-right[
+
+Ahora representamos la incertidumbre con intervalos de confianza
+
+¿Qué conclusión inferimos del grafico?
+
+Escribe 2 o 3 conclusiones. 
+
+¿En que cambia la interpretación? 
+
+]
+
+
 
 
 ---
@@ -214,6 +244,8 @@ ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
 +  El promedio real debería estar (con un 95% de confianza) en el intervalo. 
 
 +  **No mirar los intervalos de confianza nos puede llevar a errores de interpretación ** 
+
++ Esto nos puede llevar a tomar desiciones incorrectas
 
 
 ---
