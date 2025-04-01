@@ -44,7 +44,7 @@ About macros.js: permite escalar las imágenes como [:scale 50%](path to image),
 --->
 
 # __Primer Taller Participativo__
-## * aproximándonos a los intervalos de confianza *
+## * aproximándonos a los intervalos de confianza y t-student *
 <br>
 <hr>
 # Investigación Cuantitativa I
@@ -282,17 +282,26 @@ datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
 # Graficar barras con intervalos de confianza y etiquetas
 ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
   geom_bar(stat = "identity", color = "black") +
-  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold",
+             size=6) +  # Etiqueta en la media
 
   
   geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error), width = 0.2) +
-  geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
-  geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
-  labs(title = "Porcentaje de asistencia según intervención",
+  geom_text(aes(label = Media - Error, y = Media - Error),
+            vjust = 1.5, color = "red",size=6) +  # Límite inferior
+  geom_text(aes(label = Media + Error, y = Media + Error),
+            vjust = -1, color = "red",size=6) +  # Límite superior
+  labs(title = "Asistencia según intervención",
        y = "Porcentaje de asistencia",
        x = "Grupo") +
   ylim(0, 100) +  # Ajustar límites del eje Y
-  theme_minimal()
+  theme_minimal() + 
+    theme(title = element_text(size=20),
+          legend.position = "bottom",
+          legend.text = element_text(size=20),
+          axis.title.x=element_blank(),
+          axis.text.x=element_blank(),
+          ) 
 
 ```
 
@@ -347,12 +356,16 @@ class: inverse, middle, center, slideInRight
 
 #  Hagamos unos ejercicios 
 
-
+## Organicense en tres grupos para resolver los siguientes ejercicios
 ---
+
+.pull-left[
+
 
 
 
 ```{r, echo = FALSE,message=FALSE,warning=FALSE}
+
 
 # Cargar librerías necesarias
 library(ggplot2)
@@ -360,8 +373,8 @@ library(ggplot2)
 # Crear datos ficticios
 set.seed(123)
 categorias <- c("Municipales", "Slep", "Subvencionados")
-medias <- c(230, 250, 280)  # Valores entre 0 y 100
-errores <- c(10, 15, 4)  # Supuestos errores estándar
+medias <- c(47, 57, 70)  # Valores entre 0 y 100
+errores <- c(10, 15, 15)  # Supuestos errores estándar
 
 # Crear un data frame
 datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
@@ -369,20 +382,51 @@ datos <- data.frame(Grupo = categorias, Media = medias, Error = errores)
 # Graficar barras con intervalos de confianza y etiquetas
 ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
   geom_bar(stat = "identity", color = "black") +
-  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold") +  # Etiqueta en la media
+  geom_text(aes(label = Media, y = Media), vjust = -0.5, fontface = "bold",
+            size=8) +  # Etiqueta en la media
 
   
   geom_errorbar(aes(ymin = Media - Error, ymax = Media + Error),vjust=-0.1, width = 0.2) +
-  geom_text(aes(label = Media - Error, y = Media - Error), vjust = 1.5, color = "red") +  # Límite inferior
-  geom_text(aes(label = Media + Error, y = Media + Error), vjust = -1, color = "red") +  # Límite superior
-  labs(title = "Puntaje simce según dependencia",
-       y = "Puntaje Simce ",
+  geom_text(aes(label = Media - Error, y = Media - Error), hjust = 1.5, color = "red",
+            size=8) +  # Límite inferior
+  geom_text(aes(label = Media + Error, y = Media + Error), hjust = -1, color = "red",
+            size=8) +  # Límite superior
+  labs(title = "Conocimiento Civico según dep",
+       y = "Puntaje Conocimiento Civico ",
        x = "Grupo") +
-  #ylim(0, 100) +  # Ajustar límites del eje Y
-  theme_minimal()
-
+  ylim(0, 100) +  # Ajustar límites del eje Y
+  theme_minimal() + 
+    theme(title = element_text(size=20),
+          legend.position = "bottom",
+          legend.text = element_text(size=20),
+          axis.title.y=element_blank(),
+          axis.text.x=element_blank(),
+          ) + coord_flip()  + scale_fill_brewer(palette = "PuOr")
 
 ```
+
+
+
+
+]
+
+
+.pull-right[
+
+El conocimiento cívico es un conjunto de habilidades y saberes necesario para la vida en democracia 
+
+Se hizo una muestra aleatoria de estudiantes y establecimientos (n=500)
+
+Se realizo a la muestra una prueba de conocimiento cívico
+
+En función de los resultados responde la siguiente pregunta 
+
+__¿En cuál dependencia se deben redoblar los esfuerzos para fomentar el conocimiento cívico?__ 
+
+(Justifica estadísticamente)
+
+]
+
 ---
 
 ```{r, echo = FALSE,message=FALSE,warning=FALSE}
@@ -411,6 +455,14 @@ datos %>% mutate(
 
 ```
 
+## ¡Oh no! Los investigadores habían hecho mal los calculos
+
+En función de los __nuevos__ resultados responde la siguiente pregunta 
+
+__¿En cuál dependencia se deben redoblar los esfuerzos para fomentar el conocimiento cívico?__ 
+
+(Justifica estadísticamente)
+
 
 ---
 
@@ -419,3 +471,26 @@ class: inverse, middle, center, slideInRight
 #  Prueba T 
 
 ---
+
+
+# ¿Para que nos sirve la prueba T?
+
+> Para evaluar si existen diferencias significativas en una variable (continua) entre dos grupos
+
+## ¿Cuando puedo usar la prueba T? 
+
+
+* Tengo una muestra aleatoria/representativa
+
+* Tengo una variable dependiente continua
+
+* Tengo una variable categorica de dos categorias (2 grupos, no más)
+
+* Tengo una muestra mayor a 30 
+
+
+---
+
+
+
+
