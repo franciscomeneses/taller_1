@@ -343,8 +343,91 @@ class: inverse, middle, center, slideInRight
 
 ---
 
+# ¿Que información nos entrega T-student?
+## ¿Cómo se interpreta? 
 
 
+* Nos señala si existe diferencia significativa entre los grupos
+    * Si p-value es &lt; (menor que) 0.05 __¡Exsite relación!__ (Rechazamos H0)
+    
+    * Si p-value es &gt; (mayor que) 0.05 __NO hay relación__ (Aceptamos H0)
+
+* Nos señala la diferencia de medias con un intervalo de confianza
+    * Si el intervalo __NO__ contiene el 0 __¡Exsite relación!__ 
+    * Si el intervalo contiene cero __No hay relación__
+    
+    
+* Fuerza de la relación
+
+    
+---
+
+
+# Veamos un ejemplo 
+
+Estamos evaluando el desarrollo motor de parvulos (medido del 0 al 100) entre quienes van al jardin y quienes no van al jardin. Obtenemos la siguiente información con T-STUDENT
+ 
+ * Identifiquen e interpreten p-value
+ * Identifiquen e interpreten el intervalo
+
+
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  valor by grupo
+## t = 7.5787, df = 98, p-value = 0.00000000001987
+## alternative hypothesis: true difference in means between group Jardin and group Sin Jardin is not equal to 0
+## 95 percent confidence interval:
+##  2.049107 3.502874
+## sample estimates:
+##     mean in group Jardin mean in group Sin Jardin 
+##                 53.06881                 50.29282
+```
+
+
+---
+
+class: inverse, middle, center, slideInRight
+
+#  Volvamos al ticket de salida
+---
+
+
+&lt;embed src="https://forms.gle/enq3uWu6TqGGB8o76" style="width:800px; height: 800px;"&gt;
+
+
+---
+
+class: inverse, middle, center, slideInRight
+
+#  ¡De vuelta a los grupos! 
+
+---
+
+# Diferencias de Genero en matemáticas
+
+Se evaluan las diferencias en notas entre hombres y mujeres en resultados de matematicas. 
+
+¿Qué podemos interpretar de los resultados?
+
+¿Cúales son las posibles causas de esta conclusión?
+
+
+```
+## 
+## 	Two Sample t-test
+## 
+## data:  valor by grupo
+## t = 1.7282, df = 98, p-value = 0.0871
+## alternative hypothesis: true difference in means between group Hom and group Muj is not equal to 0
+## 95 percent confidence interval:
+##  -0.240338  3.481914
+## sample estimates:
+## mean in group Hom mean in group Muj 
+##          62.20642          60.58563
+```
 
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
