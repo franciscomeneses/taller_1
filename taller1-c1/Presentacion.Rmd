@@ -61,19 +61,18 @@ About macros.js: permite escalar las imágenes como [:scale 50%](path to image),
 
 + Intervalos de confianza
   - Repaso intervalos de confianza
-  - Revisión participativa Ticket de salida.
+  - Revisión participativa Ticket de salida
   - Ejercicios conjuntos
-  - ¿Cálculo? 
-  
+
 + T student 
   - Repaso
-  - revisión ticket de salida
-  - ejercicios
+  - Revisión ticket de salida
+  - Ejercicios
   
   
 + Conceptos relevantes
   - Tipos de variables 
-  - Teoría del límite central
+  - Teorema del límite central
 ---
 class: inverse, middle, center, slideInRight
 
@@ -81,13 +80,13 @@ class: inverse, middle, center, slideInRight
 ---
 
 
-## Los intervalos de confianza: 
+## Los intervalos de confianza 
 
 Representan la incertidumbre de una inferencia muestral
 
-- valor observado (en la muestra):  **51%**
+- Valor observado (en la muestra):  **51%**
 - Intervalo de confianza (en la población con 95% de confianza):  **48% - 54%**
-- Distinto a desviación estándar.
+- Distinto a desviación estándar
 
 --
 
@@ -95,24 +94,22 @@ Representan la incertidumbre de una inferencia muestral
 
  > *¿Dar alimento a los estudiantes en la escuela mejora la asistencia?*
  
- 
- 
 --
 
 .center[![:scale 80%](images/relacion.png)]
 
 ---
-### Metodología
+## Metodología
 
 
-* Hicimos un experimento con tres grupos de estudiantes elegidos al azar (n = 600).
+* Hicimos un experimento con tres grupos de estudiantes elegidos al azar (n = 600)
 
 Los grupos son:
-* sin alimento escolar (N=200)
+* Sin alimento escolar (N=200)
 
-* desayuno escolar (N=200)
+* Con desayuno escolar (N=200)
 
-* desayuno más almuerzo.  (N=200)
+* Con desayuno y almuerzo escolar (N=200)
 
 
 ---
@@ -122,7 +119,7 @@ class: inverse, middle, center, slideInRight
 #  Veamos los resultados (Ficticios)...
 
 
-## Actividad: Escriban sus conclusiones por cada lamina
+## Actividad: Escriban sus conclusiones por cada lámina
 ---
 
 ## Solo los promedios de la muestra
@@ -172,9 +169,9 @@ ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
 
 
 .pull-right[
-¿Qué conclusión inferimos del grafico?
+¿Qué conclusión inferimos del gráfico?
 
-Escribe 2 o 3 conclusiones. 
+Escribe 2 o 3 conclusiones
 
 ]
 
@@ -231,11 +228,11 @@ ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
 
 Ahora representamos la incertidumbre con intervalos de confianza
 
-¿Qué conclusión inferimos del grafico?
+¿Qué conclusión inferimos del gráfico?
 
-Escribe 2 o 3 conclusiones. 
+Escribe 2 o 3 conclusiones
 
-¿En que cambia la interpretación? 
+¿En qué cambia la interpretación? 
 
 ]
 
@@ -244,18 +241,18 @@ Escribe 2 o 3 conclusiones.
 
 ---
 
-# Sintesis sobre intervalos de confianza
+# Síntesis sobre intervalos de confianza
 
 
-+  Representan la incertidumbre de trabajar con una muestra. 
++  Representan la incertidumbre de trabajar con una muestra 
 
 +  Tenemos el promedio observado en la muestra
 
-+  El promedio real debería estar (con un 95% de confianza) en el intervalo. 
++  El promedio real debería estar (con un 95% de confianza) en el intervalo 
 
-+  **No mirar los intervalos de confianza nos puede llevar a errores de interpretación ** 
++  **No mirar los intervalos de confianza nos puede llevar a errores de interpretación** 
 
-+ Esto nos puede llevar a tomar desiciones incorrectas
++ Esto nos puede llevar a tomar decisiones incorrectas
 
 
 ---
@@ -414,11 +411,11 @@ ggplot(datos, aes(x = Grupo, y = Media,  fill = Grupo,)) +
 
 .pull-right[
 
-El conocimiento cívico es un conjunto de habilidades y saberes necesario para la vida en democracia 
+El conocimiento cívico es un conjunto de habilidades y saberes necesarios para la vida en democracia 
 
 Se hizo una muestra aleatoria de estudiantes y establecimientos (n=500)
 
-Se realizo a la muestra una prueba de conocimiento cívico
+Se realizó a la muestra una prueba de conocimiento cívico
 
 En función de los resultados responde la siguiente pregunta 
 
@@ -436,7 +433,7 @@ library(kableExtra)
 
 # Crear datos ficticios
 set.seed(123)
-categorias <- c("Municipales", "Slep", "Subvencionados")
+categorias <- c("Slep", "Municipales", "Subvencionados")
 medias <- c(262, 220, 270)  # Valores entre 0 y 100
 errores <- c(5, 5, 5)  # Supuestos errores estándar
 
@@ -456,7 +453,7 @@ datos %>% mutate(
 
 ```
 
-## ¡Oh no! Los investigadores habían hecho mal los calculos
+## ¡Oh no! Los investigadores habían hecho mal los cálculos
 
 En función de los __nuevos__ resultados responde la siguiente pregunta 
 
@@ -474,35 +471,35 @@ class: inverse, middle, center, slideInRight
 ---
 
 
-# ¿Para que nos sirve la prueba T?
+# ¿Para qué nos sirve la prueba T?
 
 > Para evaluar si existen diferencias significativas en una variable (continua) entre dos grupos
 
-## ¿Cuando puedo usar la prueba T? 
+## ¿Cuándo puedo usar la prueba T? 
 
 
 * Tengo una muestra aleatoria/representativa
 
 * Tengo una variable dependiente continua
 
-* Tengo una variable categorica de dos categorias (2 grupos, no más)
+* Tengo una variable categórica de dos categorías (2 grupos, no más)
 
 * Tengo una muestra mayor a 30 
 
 
 ---
 
-# ¿Que información nos entrega T-student?
+# ¿Qué información nos entrega T-student?
 ## ¿Cómo se interpreta? 
 
 
 * Nos señala si existe diferencia significativa entre los grupos
-    * Si p-value es < (menor que) 0.05 __¡Exsite relación!__ (Rechazamos H0)
+    * Si p-value es < (menor que) 0.05 __¡Existe relación!__ (Rechazamos H0)
     
     * Si p-value es > (mayor que) 0.05 __NO hay relación__ (Aceptamos H0)
 
 * Nos señala la diferencia de medias con un intervalo de confianza
-    * Si el intervalo __NO__ contiene el 0 __¡Exsite relación!__ 
+    * Si el intervalo __NO__ contiene el 0 __¡Existe relación!__ 
     * Si el intervalo contiene cero __No hay relación__
     
     
@@ -514,7 +511,7 @@ class: inverse, middle, center, slideInRight
 
 # Veamos un ejemplo 
 
-Estamos evaluando el desarrollo motor de parvulos (medido del 0 al 100) entre quienes van al jardin y quienes no van al jardin. Obtenemos la siguiente información con T-STUDENT
+Estamos evaluando el desarrollo motor de párvulos (medido del 0 al 100) entre quienes van al jardín y quienes no van al jardín. Obtenemos la siguiente información con T-student
  
  * Identifiquen e interpreten p-value
  * Identifiquen e interpreten el intervalo
@@ -563,13 +560,13 @@ class: inverse, middle, center, slideInRight
 
 ---
 
-# Diferencias de Genero en matemáticas
+# Diferencias de Género en matemáticas
 
-Se evaluan las diferencias en notas entre hombres y mujeres en resultados de matematicas. 
+Se evalúan las diferencias en notas entre hombres y mujeres en resultados de matemáticas 
 
 ¿Qué podemos interpretar de los resultados?
 
-¿Cúales son las posibles causas de esta conclusión?
+¿Cuáles son las posibles causas de esta conclusión?
 
 ```{r echo = FALSE,message=FALSE,warning=FALSE}
 
