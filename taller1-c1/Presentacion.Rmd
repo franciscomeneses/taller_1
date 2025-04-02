@@ -590,4 +590,104 @@ resultado_ttest <- t.test(valor ~ grupo, data = datos, var.equal = TRUE)
 print(resultado_ttest)
 
 ```
+---
+class: inverse, middle, center, slideInRight
+
+#  Conceptos elementales de la investigación cuantitativa
+
+---
+### Conceptos elementales
+
+* Variables
+
+       + __Dependiente__ (Lo que se quiere explicar)
+       + __Independiente__ (Lo que usamos para explicarla)
+
+* Sobre los datos 
+
+       + __Población__ (Grupo de interes de estudio)
+       + __Muestra__ (Subconjunto de la población utilizado en estudio)
+
+* De los calculos
+
+       + __Parametro__ (Valor/cálculo en la población: ej $μ$)
+       + __Estadistico__ (Valor/cálculo en la muestra: ej $\overline{x}$)
+       + __Inferencia__ (Inferir info de la población en base muestras)
+       
+* De las ideas
+
+       + __Hipotesis__ (Resultado teórico o estadistico esperado)
+
+???
+Para facilitar la comunicación de las investigaciones utilizamos estos conceptos
+---
+
+# Niveles de medición
+
+.small[
+
+| Nivel de Medición | Definición | Propiedades | Ejemplos |
+|------------------|------------|-------------|----------|
+| **Nominal** | Clasifica los datos en categorías sin un orden específico. | **Distingue** | RUT, RBD |
+| **Ordinal** | Clasifica los datos en categorías con un orden significativo, pero sin distancias precisas entre valores. | **Distingue, Ordena** | Grado de acuerdo: "Estoy motivado aprendiendo" |
+| **Intervalar** | Posee un orden y distancias iguales entre valores, pero no tiene un cero absoluto. | **Distingue, Ordena, Señala distancia** | Puntaje en prueba SIMCE |
+| **De razón** | Tiene un orden, distancias iguales y un cero absoluto que indica ausencia de la característica medida. | **Distingue, Ordena, Señala distancia, Posee 0** | Número de días con asistencia |
+
+]
+
+???
+
+Son relevantes para identificar que estadistico tenemos que utilizar. Por ejemplo, vimos que en Tstudent, necesitamos intervalar o razon  + ordinal o nominal
+
+---
+
+# Terema del limite central
+
+
+> Es la base teorico-matemática de la estadistica que utilizaremos. No se usa directamente en la práctica, pero justifica nuestras inferencias estadisticas. 
+
+"Si tomamos muchas muestras grandes de cualquier población (sin importar cómo sea su distribución), la distribución de las medias de esas muestras siempre se parecerá a una distribución normal, por lo cual podremos hacer calculos en base a esta distribución" 
+
+
+* Justifica el uso de estadistica inferencial. Por ejemplo
+      
+      + Intervalos de confianza
+
+      + Pruebas de significación
+      
+---
+
+
+<embed src="https://o5uemt-francisco-meneses0rivas.shinyapps.io/taller1-c1/" style="width:800px; height: 800px;">
+
+
+---
+
+class: inverse, middle, center, slideInRight
+
+#  Volvamos al ticket de salida
+---
+
+
+<embed src="https://forms.gle/27zFQH83AHEZgJPh8" style="width:800px; height: 800px;">
+
+---
+
+
+<embed src="https://forms.gle/enq3uWu6TqGGB8o76" style="width:800px; height: 800px;">
+
+---
+
+# Actividad opcional para el hogar
+
+[Enlace a noticia](https://elpais.com/chile/branded/2024-12-06/un-estudio-demuestra-que-los-egresados-de-educacion-media-que-articulan-con-inacap-tienen-mayores-probabilidades-de-egresar-y-titularse.html?utm_source=chatgpt.com 
+)
+
+Analiza la siguiente noticia y responde las siguientes preguntas
+
+¿Cuáles son las variables del estudio? Identifica la dependiente y la independiente
+
+¿Cuál es el nivel de medición de cada variable? 
+
+¿Sería adecuado utilizar t-student en este caso?
 

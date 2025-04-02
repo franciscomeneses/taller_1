@@ -1,0 +1,13 @@
+name: taller1-c1
+title: taller1-c1
+username: o5uemt-francisco-meneses0rivas
+account: o5uemt-francisco-meneses0rivas
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 14405550
+bundleId: 10043479
+url: https://o5uemt-francisco-meneses0rivas.shinyapps.io/taller1-c1/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE
+ignoredFiles: .gitattributes|.RData|libs/header-attrs/header-attrs.js|libs/kePrint/kePrint.js|libs/lightable/lightable.css|libs/xaringan_custom/macros.js|libs/xaringan_custom/xaringan-themer.css|Presentacion.html|Presentacion.pdf|Presentacion.Rmd|xaringan_custom/animate.css|xaringan_custom/header-footer.css|xaringan_custom/macros.js|xaringan_custom/progress-bar.css|xaringan_custom/xaringan-themer.css
